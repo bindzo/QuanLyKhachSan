@@ -13,19 +13,28 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/khachhang.css" />
-
   </head>
   <body>
     <div class="header">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Hotel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="./khachhang.html">Khách hàng <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./khachhang.html"
+                >Khách hàng <span class="sr-only">(current)</span></a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./phong.html">Phòng</a>
@@ -44,15 +53,15 @@
             <div class="panel-body">
               <form role="form">
                 <div class="container">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="ten"
-                        id="ten"
-                        class="form-control input-sm"
-                        placeholder="Tên"
-                      />
-                    </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="ten"
+                      id="ten"
+                      class="form-control input-sm"
+                      placeholder="Tên"
+                    />
+                  </div>
 
                   <div class="form-group">
                     <input
@@ -64,26 +73,26 @@
                     />
                     <span class="sp-thongbao" id="idNameError"></span>
                   </div>
-                
-                      <div class="form-group">
-                        <div style="display: flex;">
-                          <input
-                            type="text"
-                            name="cmnd"
-                            id="cmnd"
-                            class="form-control input-sm"
-                            placeholder="CMND"
-                          />
-                          <input
-                            type="text"
-                            name="diachi"
-                            id="diachi"
-                            class="form-control input-sm"
-                            placeholder="Địa chỉ"
-                          />
-                        </div>
-                      </div>
-                   
+
+                  <div class="form-group">
+                    <div style="display: flex;">
+                      <input
+                        type="text"
+                        name="cmnd"
+                        id="cmnd"
+                        class="form-control input-sm"
+                        placeholder="CMND"
+                      />
+                      <input
+                        type="text"
+                        name="diachi"
+                        id="diachi"
+                        class="form-control input-sm"
+                        placeholder="Địa chỉ"
+                      />
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <select class="form-control" id="loai">
                       <option>Loại</option>
@@ -99,7 +108,6 @@
                     class="btn btn-info btn-block"
                     onclick="return addEmployee()"
                   /> -->
-                  
                 </div>
               </form>
             </div>
@@ -108,12 +116,11 @@
       </div>
     </div>
     <div id="hienthi" class="container">
-      
       <table class="table text-white">
         <thead>
           <tr>
             <th>STT</th>
-            <th>Mã khách hàng</th>  
+            <th>Mã khách hàng</th>
             <th>Tên</th>
             <th>Loại</th>
             <th>CMND</th>
@@ -134,9 +141,10 @@
     <script type="text/javascript" src="js/services/GuestService.js"></script>
     <script type="text/javascript" src="js/services/ThueService.js"></script>
     <script type="text/javascript" src="js/models/Thue.js"></script>
-
+    <script type="text/javascript" src="js/services/PhongService.js"></script>
+    <script type="text/javascript" src="js/models/Phong.js"></script>
+    <script type="text/javascript" src="js/controller/phong.js"></script>
     <script type="text/javascript" src="js/models/Khachhang.js"></script>
-
     <script type="text/javascript" src="js/controller/main.js"></script>
 
     <script src="WOW-master/dist/wow.min.js"></script>

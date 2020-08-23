@@ -86,7 +86,7 @@
                   <input
                     id="btnAdd"
                     type="button"
-                    value="Thêm khách hàng"
+                    value="Thêm phòng"
                     class="btn btn-info btn-block"
                     onclick="return addEmployee()"
                   />
@@ -121,7 +121,7 @@
             <th>Ghi chú</th>
           </tr>
         </thead>
-        <tbody id="tbodyEmployees"></tbody>
+        <tbody id="tbodyPhong"></tbody>
       </table>
     </div>
     <script
@@ -132,8 +132,10 @@
     <script type="text/javascript" src="js/jquery.easing.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script src="./js/services/EmployeeServices.js"></script>
-    <script type="text/javascript" src="js/phong.js"></script>
+    <script type="text/javascript" src="js/services/PhongService.js"></script>
+
+    <script type="text/javascript" src="js/models/Phong.js"></script>
+    <script type="text/javascript" src="js/controller/phong.js"></script>
 
     <script src="WOW-master/dist/wow.min.js"></script>
     <script type="text/javascript">

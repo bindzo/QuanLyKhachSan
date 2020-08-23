@@ -1,7 +1,8 @@
 var guestService = new GuestService();
 var thueService = new ThueService();
 var guestList = [];
-
+var phongList;
+console.log(phongList);
 const addGuest = function () {
   const ten = document.getElementById("ten").value;
   const makh = document.getElementById("makh").value.trim();
@@ -98,10 +99,15 @@ const addThue = function (thue) {
       console.log("error", err);
     });
 };
+
 const updateGuest = function (id) {
   const index = parseInt(findById(id));
   const guestUpdate = guestList[index];
   const input = document.getElementById(`roomInput-${id}`).value;
+  if(!checkPhong(input)){
+    alert('Phòng không khả dụng');
+    return;
+  }
   const newThue = new Thue(input);
   
   guestUpdate.mathue = input + "-t";
