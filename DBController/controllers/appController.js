@@ -27,12 +27,12 @@ exports.read_a_guest = function (req, res) {
   });
 };
 
-// exports.update_a_task = function (req, res) {
-//     KhachHang.updateById(req.params.makh, new Task(req.body), function (err, task) {
-//     if (err) res.send(err);
-//     res.json(task);
-//   });
-// };
+exports.update_a_guest = function (req, res) {
+    KhachHang.updateById(req.params.makh, new KhachHang(req.body), function (err, kh) {
+    if (err) res.send(err);
+    res.json(kh);
+  });
+};
 
 exports.delete_a_guest = function (req, res) {
     KhachHang.remove(req.params.makh, function (err, kh) {

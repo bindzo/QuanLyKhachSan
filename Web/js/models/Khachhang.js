@@ -9,4 +9,3 @@ function Guest(makh, ten, loai, cmnd, diachi, mathue) {
     } else this.mathue = mathue;
   }
 
-export default Guest;

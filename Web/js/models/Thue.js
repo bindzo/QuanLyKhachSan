@@ -1,7 +1,6 @@
 function Thue(maphong) {
   this.mathue = maphong+'-t';
   this.maphong = maphong;
-  this.songay = songay;
+  this.songay = 0;
 }
 
-export default Thue;

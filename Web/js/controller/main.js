@@ -1,8 +1,5 @@
-import Guest from "../models/Khachhang.js";
-import GuestService from '../services/GuestService.js';
-
 var guestService = new GuestService();
-
+var thueService = new ThueService();
 var guestList = [];
 
 const addGuest = function () {
@@ -57,9 +54,9 @@ const renderGuests = function (arr) {
         <input type="text" class='hiddenForm' id='roomInput-${
           arr[i].makh
         }' placeholder="Mã phòng" />
-        <button class='btn btn-primary hiddenForm' id='roomConfirm' onclick="updateGuest('${
+        <button class='btn btn-primary hiddenForm' id='roomConfirm-${
           arr[i].makh
-        }')">Thuê</button>
+        }' onclick="updateGuest('${arr[i].makh}')">Thuê</button>
         <button class='btn btn-danger' onclick="deleteGuest('${
           arr[i].makh
         }')">Xóa</button>
@@ -86,29 +83,44 @@ const deleteGuest = function (id) {
 };
 const getUpdateGuest = function (id) {
   document.getElementById(`roomInput-${id}`).style.display = "block";
-  document.getElementById("roomConfirm").style.display = "block";
+  document.getElementById(`roomConfirm-${id}`).style.display = "block";
   const btnChooser = document.getElementsByClassName("btnChooser");
   const index = findById(id);
   btnChooser[index].style.display = "none";
 };
-// const updateGuest = function (id) {
-//   const index = parseInt(findById(id));
-//   const guestUpdate = guestList[index];
-//   const input = document.getElementById(`roomInput-${id}`);
-
-//   if (index !== -1) {
-//     guestService
-//       .update(id, guestUpdate)
-//       .then(function (res) {
-//         getData();
-//         renderGuests();
-//         console.log("Thuê thành công!");
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-// };
+const addThue = function (thue) {
+  var promise = thueService.add(thue);
+  promise
+    .then(function (res) {
+      console.log("rent success");
+    })
+    .catch(function (err) {
+      console.log("error", err);
+    });
+};
+const updateGuest = function (id) {
+  const index = parseInt(findById(id));
+  const guestUpdate = guestList[index];
+  const input = document.getElementById(`roomInput-${id}`).value;
+  const newThue = new Thue(input);
+  addThue(newThue);
+  guestUpdate.mathue = input + "-t";
+  if (index !== -1) {
+    guestService
+      .update(id, guestUpdate)
+      .then(function (res) {
+        getData();
+        renderGuests();
+        console.log("Thuê thành công!");
+        const btnChooser = document.getElementsByClassName("btnChooser");
+        const index = findById(id);
+        btnChooser[index].style.display = "none";
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+};
 
 const findById = function (id) {
   for (var i = 0; i < guestList.length; i++) {

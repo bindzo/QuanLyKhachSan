@@ -7,11 +7,11 @@ const GuestService = function(){
             data: newGuest
         })
     }
-    this.update = function(id,employeeUpdate){
+    this.update = function(id,guestUpdate){
         return axios({
-            url:"https://5bd2959ac8f9e400130cb7e9.mockapi.io/api/employee/"+id,
+            url:"http://localhost:3000/guest/"+id,
             method: 'PUT',
-            data:employeeUpdate
+            data:guestUpdate
         })
     }
     this.delete = function(id){
@@ -27,4 +27,3 @@ const GuestService = function(){
         })
     }
 }
-export default GuestService;

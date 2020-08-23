@@ -18,7 +18,6 @@ KhachHang.createGuest = function (newGuest, result) {
             result(err, null);
         }
         else{
-            console.log(res.insertId);
             result(null, res.insertId);
         }
     });
@@ -42,23 +41,22 @@ KhachHang.getAllGuest = function(result) {
             result(null, err);
         }
         else{
-            console.log('khachhang : ', res);
-
             result(null, res);
         }
     });
 };
-// Task.updateById = function(id, kh, result){
-//     sql.query("UPDATE khachhang SET task = ?,  WHERE id = ?", [task.task, id], function (err, res) {
-//         if(err) {
-//             console.log("error: ", err);
-//             result(null, err);
-//         }
-//         else{
-//             result(null, res);
-//         }
-//     });
-// };
+KhachHang.updateById = function(id, kh, result){
+    sql.query("UPDATE khachhang SET mathue = ?  WHERE makh = ?", [kh.mathue, id], function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log("ok")
+            result(null, res);
+        }
+    });
+};
 KhachHang.remove = function(id, result){
     sql.query("DELETE FROM khachhang WHERE makh = ?", [id], function (err, res) {
 
