@@ -3,7 +3,6 @@ var sql = require('./db.js');
 
 //Task object constructor
 var KhachHang = function(khachhang){
-    console.log(khachhang);
     this.makh = khachhang.makh;
     this.ten = khachhang.ten;
     this.loai = khachhang.loai;
@@ -46,7 +45,8 @@ KhachHang.getAllGuest = function(result) {
     });
 };
 KhachHang.updateById = function(id, kh, result){
-    sql.query("UPDATE khachhang SET mathue = ?  WHERE makh = ?", [kh.mathue, id], function (err, res) {
+    console.log(id, kh);
+    sql.query("UPDATE khachhang SET mathue = ?  WHERE makh = ?", [kh.thue, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);

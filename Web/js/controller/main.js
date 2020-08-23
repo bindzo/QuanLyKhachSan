@@ -103,8 +103,9 @@ const updateGuest = function (id) {
   const guestUpdate = guestList[index];
   const input = document.getElementById(`roomInput-${id}`).value;
   const newThue = new Thue(input);
-  addThue(newThue);
+  
   guestUpdate.mathue = input + "-t";
+  console.log(guestUpdate);
   if (index !== -1) {
     guestService
       .update(id, guestUpdate)
@@ -112,14 +113,12 @@ const updateGuest = function (id) {
         getData();
         renderGuests();
         console.log("Thuê thành công!");
-        const btnChooser = document.getElementsByClassName("btnChooser");
-        const index = findById(id);
-        btnChooser[index].style.display = "none";
       })
       .catch(function (error) {
         console.log(error);
       });
   }
+  addThue(newThue);
 };
 
 const findById = function (id) {
@@ -132,6 +131,7 @@ const findById = function (id) {
 };
 
 const getData = function () {
+  guestList=[];
   var promise = guestService.getAll();
   promise
     .then(function (res) {

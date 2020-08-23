@@ -4,9 +4,7 @@ var KhachHang = require("../models/appModel.js");
 
 exports.list_all_guest = function (req, res) {
   KhachHang.getAllGuest(function (err, kh) {
-    console.log("controller");
     if (err) res.send(err);
-    console.log("res", kh);
     res.send(kh);
   });
 };
@@ -30,9 +28,10 @@ exports.read_a_guest = function (req, res) {
 exports.update_a_guest = function (req, res) {
     KhachHang.updateById(req.params.makh, new KhachHang(req.body), function (err, kh) {
     if (err) res.send(err);
-    res.json(kh);
+    console.log(kh);
+    res.json(kh).end();
   });
-};
+}; 
 
 exports.delete_a_guest = function (req, res) {
     KhachHang.remove(req.params.makh, function (err, kh) {
