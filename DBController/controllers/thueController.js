@@ -1,11 +1,15 @@
 "use strict";
 
 var Thue = require("../models/thueModel.js");
+var Phong = require("../models/phongModel.js");
 
 exports.create_a_thue = function (req, res) {
   var new_thue = new Thue(req.body);
 
   Thue.createThue(new_thue, function (err, kh) {
+    if (err) res.send(err);
+  });
+  Phong.updateById(req.params.maphong, new Phong(req.body), function (err, kh) {
     if (err) res.send(err);
   });
 };

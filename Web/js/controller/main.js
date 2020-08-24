@@ -2,7 +2,6 @@ var guestService = new GuestService();
 var thueService = new ThueService();
 var guestList = [];
 var phongList;
-console.log(phongList);
 const addGuest = function () {
   const ten = document.getElementById("ten").value;
   const makh = document.getElementById("makh").value.trim();
@@ -38,7 +37,6 @@ const renderGuests = function (arr) {
   arr = arr || guestList;
 
   for (var i = 0; i < arr.length; i++) {
-    console.log(arr[i].mathue);
     htmlContent += `
 		<tr>
 			<td>${i + 1}</td>
@@ -109,9 +107,7 @@ const updateGuest = function (id) {
     return;
   }
   const newThue = new Thue(input);
-  
   guestUpdate.mathue = input + "-t";
-  console.log(guestUpdate);
   if (index !== -1) {
     guestService
       .update(id, guestUpdate)
@@ -125,6 +121,7 @@ const updateGuest = function (id) {
       });
   }
   addThue(newThue);
+  updatePhong(input);
 };
 
 const findById = function (id) {
@@ -141,7 +138,6 @@ const getData = function () {
   var promise = guestService.getAll();
   promise
     .then(function (res) {
-      console.log(res.data);
       for (var i = 0; i < res.data.length; i++) {
         const currentGuest = res.data[i];
         const newGuest = new Guest(

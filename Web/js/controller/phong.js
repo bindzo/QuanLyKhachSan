@@ -36,7 +36,6 @@ const renderPhongs = function (arr) {
   arr = arr || phongList;
 
   for (var i = 0; i < arr.length; i++) {
-    console.log(arr[i].mathue);
     htmlContent += `
 		<tr>
 			<td>${i + 1}</td>
@@ -48,7 +47,10 @@ const renderPhongs = function (arr) {
 			<td>
 			
         <button class='btn btn-danger' onclick="deletePhong('${
-          arr[i].makh
+          arr[i].maphong
+        }')">Xóa</button>
+        <button class='btn btn-danger' onclick="payPhong('${
+          arr[i].maphong
         }')">Xóa</button>
 			</td>
 		</tr>`;
@@ -82,6 +84,10 @@ const getUpdatePhong = function (id) {
   btnChooser[index].style.display = "none";
 };
 const updatePhong = function (id) {
+  const index = parseInt(findByIdPhong(id));
+  console.log(phongList);
+  const phongUpdate = phongList[index];
+  phongUpdate['tinhtrang'] = 'sudung';
   console.log(phongUpdate);
   if (index !== -1) {
     phongService
@@ -89,7 +95,7 @@ const updatePhong = function (id) {
       .then(function (res) {
         getPhongData();
         renderPhongs();
-        console.log("Thuê thành công!");
+        console.log("thành công!");
       })
       .catch(function (error) {
         console.log(error);
@@ -97,7 +103,6 @@ const updatePhong = function (id) {
   }
 };
 const checkPhong = function (id) {
-  console.log(phongList);
   for (let i = 0; i < phongList.length; i++) {
     if (phongList[i]["maphong"]=== id &&phongList[i]["tinhtrang"] === "trong") {
       return true;
@@ -109,7 +114,7 @@ const checkPhong = function (id) {
 
 const findByIdPhong = function (id) {
   for (var i = 0; i < phongList.length; i++) {
-    if (id === phongList[i].makh) {
+    if (id === phongList[i].maphong) {
       return i;
     }
   }
@@ -121,7 +126,6 @@ const getPhongData = function () {
   var promise = phongService.getAll();
   promise
     .then(function (res) {
-      console.log(res.data);
       for (var i = 0; i < res.data.length; i++) {
         const currentPhong = res.data[i];
         const newPhong = new Phong(
