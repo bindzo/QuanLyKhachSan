@@ -7,7 +7,6 @@ const addPhong = function () {
   const loaikh = document.getElementById("loaikh").value;
   const cmnd = document.getElementById("cmnd").value;
   const diachi = document.getElementById("diachi").value;
-  const mathue = document.getElementById("mathue").value;
 
   var isAdd = true;
 
@@ -34,8 +33,15 @@ const addPhong = function () {
 const renderPhongs = function (arr) {
   var htmlContent = "";
   arr = arr || phongList;
-
+  let sudung;
+  let tinhtien;
   for (var i = 0; i < arr.length; i++) {
+    sudung = "block";
+    tinhtien = "none";
+    if (arr[i].tinhtrang !== "trong") {
+      sudung = "none";
+      tinhtien = "block";
+    }
     htmlContent += `
 		<tr>
 			<td>${i + 1}</td>
@@ -49,15 +55,21 @@ const renderPhongs = function (arr) {
         <button class='btn btn-danger' onclick="deletePhong('${
           arr[i].maphong
         }')">Xóa</button>
-        <button class='btn btn-danger' onclick="payPhong('${
+        <button class='btn btn-success' id='${
           arr[i].maphong
-        }')">Xóa</button>
+        }' style='display: ${sudung}' onclick="updatePhong('${
+      arr[i].maphong
+    }')">Sử dụng</button>
+        <button class='btn btn-info' id='${
+          arr[i].maphong
+        }-tt' style='display: ${tinhtien}'  onclick="tinhTienPhong('${
+      arr[i].maphong
+    }')">Tính tiền</button>
 			</td>
 		</tr>`;
   }
   const bodyPhong = document.getElementById("tbodyPhong");
-  if(bodyPhong!== null)
-  {
+  if (bodyPhong !== null) {
     bodyPhong.innerHTML = htmlContent;
   }
 };
@@ -76,18 +88,49 @@ const deletePhong = function (id) {
       });
   }
 };
-const getUpdatePhong = function (id) {
-  document.getElementById(`roomInput-${id}`).style.display = "block";
-  document.getElementById(`roomConfirm-${id}`).style.display = "block";
-  const btnChooser = document.getElementsByClassName("btnChooser");
-  const index = findByIdPhong(id);
-  btnChooser[index].style.display = "none";
+const tinhTienPhong = function (id) {
+  document.getElementById(`hoadon`).style.display = "block";
+  let date = new Date();
+  let strdate = date.toString();
+  var hoadon = new HoaDon(null, strdate, null, null, id + "-t", null);
+  var promise = hoadonService.add(hoadon);
+  promise
+    .then(function (res) {
+      const { mahd, ngaylap, makh, mathue, tongtien } = res.data;
+      let html = `
+  <tr>
+                  <td>Mã hóa đơn: </td>
+                  <td>${mahd}</td>
+                </tr>
+                <tr>
+                  <td>Ngày lập: </td>
+                  <td>${ngaylap}</td>
+                </tr>
+                <tr>
+                  <td>Mã khách hàng: </td>
+                  <td>${makh}</td>
+                </tr>
+                <tr>
+                  <td>Mã phòng: </td>
+                  <td>${mathue}</td>
+                </tr>
+                <tr>
+                  <td>Tổng tiền: </td>
+                  <td>${tongtien}</td>
+                </tr>
+  `;
+      document.getElementById("hoadondetail").innerHTML = html;
+    })
+    .catch(function (err) {
+      console.log("error", err);
+    });
 };
+
 const updatePhong = function (id) {
   const index = parseInt(findByIdPhong(id));
   console.log(phongList);
   const phongUpdate = phongList[index];
-  phongUpdate['tinhtrang'] = 'sudung';
+  phongUpdate["tinhtrang"] = "sudung";
   console.log(phongUpdate);
   if (index !== -1) {
     phongService
@@ -104,12 +147,14 @@ const updatePhong = function (id) {
 };
 const checkPhong = function (id) {
   for (let i = 0; i < phongList.length; i++) {
-    if (phongList[i]["maphong"]=== id &&phongList[i]["tinhtrang"] === "trong") {
+    if (
+      phongList[i]["maphong"] === id &&
+      phongList[i]["tinhtrang"] === "trong"
+    ) {
       return true;
     }
   }
   return false;
-
 };
 
 const findByIdPhong = function (id) {

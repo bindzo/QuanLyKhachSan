@@ -121,7 +121,6 @@ const updateGuest = function (id) {
       });
   }
   addThue(newThue);
-  updatePhong(input);
 };
 
 const findById = function (id) {
