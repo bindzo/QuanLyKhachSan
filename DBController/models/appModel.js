@@ -8,7 +8,7 @@ var KhachHang = function(khachhang){
     this.loai = khachhang.loai;
     this.cmnd = khachhang.cmnd;
     this.diachi = khachhang.diachi;
-    this.thue = khachhang.mathue;
+    this.mathue = khachhang.mathue;
 };
 KhachHang.createGuest = function (newGuest, result) {
     sql.query("INSERT INTO khachhang set ?", newGuest, function (err, res) {
@@ -46,7 +46,7 @@ KhachHang.getAllGuest = function(result) {
 };
 KhachHang.updateById = function(id, kh, result){
     console.log(id, kh);
-    sql.query("UPDATE khachhang SET mathue = ?  WHERE makh = ?", [kh.thue, id], function (err, res) {
+    sql.query("UPDATE khachhang SET mathue =?  WHERE makh = ?", [kh.mathue, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);

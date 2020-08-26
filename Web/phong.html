@@ -88,7 +88,7 @@
                     type="button"
                     value="Thêm phòng"
                     class="btn btn-info btn-block"
-                    onclick="return addEmployee()"
+                    onclick="return addPhong()"
                   />
                 </div>
               </form>
@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="row centered-form" id="hoadon" >
+      <div class="row centered-form" id="hoadon" style="display:none" >
         <div class="col-xs-12 col-sm-6 center wow fadeInUp">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -124,7 +124,9 @@
             <th>Ghi chú</th>
           </tr>
         </thead>
-        <tbody id="tbodyPhong"></tbody>
+        <tbody id="tbodyPhong">
+          
+        </tbody>
       </table>
     </div>
     <script
@@ -136,6 +138,9 @@
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/services/PhongService.js"></script>
+    <script type="text/javascript" src="js/services/HoaDonService.js"></script>
+
+    <script type="text/javascript" src="js/models/HoaDon.js"></script>
 
     <script type="text/javascript" src="js/models/Phong.js"></script>
     <script type="text/javascript" src="js/controller/phong.js"></script>

@@ -5,7 +5,7 @@ function Guest(makh, ten, loai, cmnd, diachi, mathue) {
     this.cmnd = cmnd;
     this.diachi = diachi;
     if (!mathue) {
-      this.mathue = "chưa thuê";
+      this.mathue = null;
     } else this.mathue = mathue;
   }
 

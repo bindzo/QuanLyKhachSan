@@ -1,26 +1,28 @@
 var phongService = new PhongService();
+var hoadonService = new HoaDonService();
+
 var phongList = [];
 
 const addPhong = function () {
-  const ten = document.getElementById("ten").value;
-  const makh = document.getElementById("makh").value.trim();
-  const loaikh = document.getElementById("loaikh").value;
-  const cmnd = document.getElementById("cmnd").value;
-  const diachi = document.getElementById("diachi").value;
+  const maphong = document.getElementById("maphong").value;
+  const ghichu = document.getElementById("ghichu").value;
+  const loai = document.getElementById("loai").value;
+  
 
   var isAdd = true;
 
   for (var i = 0; i < phongList.length; i++) {
-    if (makh === phongList[i].makh) {
-      alert(" Mã Khách hàng đã được sử dụng");
+    if (maphong === phongList[i].maphong) {
+      alert(" Mã Phòng đã được sử dụng");
       isAdd = false;
     }
   }
-  var phong = new Phong(makh, ten, loaikh, cmnd, diachi, mathue);
+  var phong = new Phong(maphong,loai,ghichu,'trong');
   if (isAdd) {
     var promise = phongService.add(phong);
     promise
       .then(function (res) {
+        console.log(res);
         getPhongData();
         renderPhongs();
       })
@@ -92,7 +94,11 @@ const tinhTienPhong = function (id) {
   document.getElementById(`hoadon`).style.display = "block";
   let date = new Date();
   let strdate = date.toString();
-  var hoadon = new HoaDon(null, strdate, null, null, id + "-t", null);
+  let mathue = id+'-t';
+  console.log(mathue);
+
+  var hoadon = new HoaDon(strdate,  null, mathue, null);
+  console.log(hoadon);
   var promise = hoadonService.add(hoadon);
   promise
     .then(function (res) {
@@ -111,7 +117,7 @@ const tinhTienPhong = function (id) {
                   <td>${makh}</td>
                 </tr>
                 <tr>
-                  <td>Mã phòng: </td>
+                  <td>Mã thuê: </td>
                   <td>${mathue}</td>
                 </tr>
                 <tr>

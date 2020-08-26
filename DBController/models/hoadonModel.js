@@ -4,20 +4,32 @@ var sql = require('./db.js');
 //Task object constructor
 var HoaDon = function(hd){
     this.mahd = hd.mahd;
-    this.maphong = hd.maphong;
-    this.songay = hd.songay;
+    this.ngaylap = hd.ngaylap;
+    this.makh = hd.makh;
+    this.mathue = hd.mathue;
+    this.tongtien = hd.tongtien
 };
 HoaDon.createHoaDon = function (newHoaDon, result) {
-    sql.query("INSERT INTO hoadon set ?", newHoaDon, function (err, res) {
+    console.log(newHoaDon);
+    sql.query("Select makh from khachhang where mathue = ? ", newHoaDon.mathue, function (err, res) {
         if(err) {
             console.log("error: ", err);
-            result(err, null);
         }
         else{
-            console.log(res.insertId);
-            result(null, res.insertId);
+            console.log(res);
+
         }
     });
+    // sql.query("INSERT INTO hoadon set ?", newHoaDon, function (err, res) {
+    //     if(err) {
+    //         console.log("error: ", err);
+    //         result(err, null);
+    //     }
+    //     else{
+    //         console.log(res.insertId);
+    //         result(null, res.insertId);
+    //     }
+    // });
 };
 
 

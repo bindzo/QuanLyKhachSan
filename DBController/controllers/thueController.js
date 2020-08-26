@@ -8,10 +8,9 @@ exports.create_a_thue = function (req, res) {
 
   Thue.createThue(new_thue, function (err, kh) {
     if (err) res.send(err);
+    
   });
-  Phong.updateById(req.params.maphong, new Phong(req.body), function (err, kh) {
-    if (err) res.send(err);
-  });
+  
 };
 
 exports.read_a_thue = function (req, res) {

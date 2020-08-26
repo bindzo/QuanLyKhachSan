@@ -14,7 +14,6 @@ exports.create_a_guest = function (req, res) {
 
   KhachHang.createGuest(new_guest, function (err, kh) {
     if (err) res.send(err);
-    res.json(kh);
   });
 };
 
@@ -29,7 +28,7 @@ exports.update_a_guest = function (req, res) {
     KhachHang.updateById(req.params.makh, new KhachHang(req.body), function (err, kh) {
     if (err) res.send(err);
     console.log(kh);
-    res.json(kh).end();
+    res.json(kh);
   });
 }; 
 

@@ -5,10 +5,10 @@ var phongList;
 const addGuest = function () {
   const ten = document.getElementById("ten").value;
   const makh = document.getElementById("makh").value.trim();
-  const loaikh = document.getElementById("loaikh").value;
+  const loaikh = document.getElementById("loai").value;
   const cmnd = document.getElementById("cmnd").value;
   const diachi = document.getElementById("diachi").value;
-  const mathue = document.getElementById("mathue").value;
+  const mathue = null;
 
   var isAdd = true;
 
@@ -108,6 +108,7 @@ const updateGuest = function (id) {
   }
   const newThue = new Thue(input);
   guestUpdate.mathue = input + "-t";
+  console.log(guestUpdate);
   if (index !== -1) {
     guestService
       .update(id, guestUpdate)
