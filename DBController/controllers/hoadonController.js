@@ -7,6 +7,6 @@ exports.create_a_hoadon = function (req, res) {
 
   HoaDon.createHoaDon(new_hoadon, function (err, kh) {
     if (err) res.send(err);
-    res.send(kh);
+    res.json(kh);
   });
 };

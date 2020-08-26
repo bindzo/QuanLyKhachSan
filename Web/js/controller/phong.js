@@ -92,8 +92,12 @@ const deletePhong = function (id) {
 };
 const tinhTienPhong = function (id) {
   document.getElementById(`hoadon`).style.display = "block";
-  let date = new Date();
-  let strdate = date.toString();
+  let today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+let strdate = mm + '/' + dd + '/' + yyyy;
   let mathue = id+'-t';
   console.log(mathue);
 
@@ -102,7 +106,8 @@ const tinhTienPhong = function (id) {
   var promise = hoadonService.add(hoadon);
   promise
     .then(function (res) {
-      const { mahd, ngaylap, makh, mathue, tongtien } = res.data;
+      console.log(res.data);
+      const { mahd, ngaylap, makh, mathue, tongtien } = res.data[0];
       let html = `
   <tr>
                   <td>Mã hóa đơn: </td>
